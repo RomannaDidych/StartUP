@@ -407,17 +407,70 @@ width: 0; height: 0; position: absolute; top: 0; left: 0; opacity: 0; visibility
 		}
 	}
 }
-/*.services__container {}
-.container {}
-.services__title {}
-.title {}
-.services__subtitle {}
-.subtitle {}*/
-.services__content {}
-.services__block {}
-.services__icon {}
-.services__littletitle {}
-.services__text {}
+.about {
+	&__container{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	&__content {
+		display: flex;
+		flex-direction: column;
+		@media (min-width: 576px){
+			width: 80%;
+			margin: 0 auto;
+		}
+		@media (min-width: 768px){
+			width: 100%;
+			margin: 0;
+		}
+		@media (min-width: 992px){			
+			margin-top: 70px;
+			/*flex-direction: row;
+			justify-content: space-between;*/
+		}
+	}
+	&__inform {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: 30px 5px 0 5px;
+		@media (min-width: 768px){
+			flex-direction: row;
+			justify-content: space-between;	
+		}
+	}
+	&__column {
+		&:first-child{
+			margin-bottom: 20px;			
+		}
+		@media (min-width: 768px){
+			width: 48%;
+			&:first-child{
+			margin-bottom: 0;			
+		}
+		}
+	}
+	&__text {
+		font-family: 'Roboto Slab', serif;
+		text-align: left;
+		font-size: 14px;
+		line-height: 1.4;
+		@media (min-width: 768px){
+			line-height: 1.8;
+		}
+	}
+}
+
+
+
+.about__subtitle {}
+.subtitle {}
+.about__content {}
+.about__inform {}
+.about__column {}
+.about__text {}
+.about__slider {}
 	
 	
 	
