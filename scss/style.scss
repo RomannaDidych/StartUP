@@ -94,19 +94,39 @@ width: 0; height: 0; position: absolute; top: 0; left: 0; opacity: 0; visibility
 		}
 }
 
+.slick{	
+	&-list{
+		overflow: hidden;
+	}
+	&-track{
+		display: flex;
+	}	
+}
+
 
 //_________________________End common styles___________________________
 .fullscreen {
 	min-height: 100vh;	
-	display: flex;	
+	display: flex;
+	position: relative;	
 	//padding: 20px 0;
+	&__mask{
+		position: absolute;
+		top: 0;
+		left: 0;
+
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0, 0, 0, 0.45);
+	}
 	&__body {
 		//background-color: lightgrey;
 		width: 100%;
+		height: 60vh;
 		flex: 1 1 auto;
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
+		justify-content: space-between;
 		align-items: center;
 		font-family: 'Montserrat', sans-serif;
 		color: #fff;
@@ -117,6 +137,7 @@ width: 0; height: 0; position: absolute; top: 0; left: 0; opacity: 0; visibility
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
+		z-index: 2;
 	}
 	&__title {
 		font-size: 36px;
@@ -154,6 +175,11 @@ width: 0; height: 0; position: absolute; top: 0; left: 0; opacity: 0; visibility
 	top: 0;
 	left:0;
 	z-index: 50;
+	@media (min-width: 768px){			
+		position: relative;
+		align-self: flex-start;
+		//margin-bottom: 160px;	
+		}
 	&:before{
 		content: '';
 		position: absolute;
@@ -164,6 +190,7 @@ width: 0; height: 0; position: absolute; top: 0; left: 0; opacity: 0; visibility
 		background-color: $brandRed;
 		z-index: 2;
 		@media (min-width: 768px){
+			//position: relative;			
 			background-color: rgba(192, 48, 28, 0);
 		}
 	}
@@ -242,7 +269,7 @@ width: 0; height: 0; position: absolute; top: 0; left: 0; opacity: 0; visibility
 		position: fixed;
 		top: -100%;
 		left: 0;
-		width: 199%;
+		width: 100%;
 		height: 100%;
 		background-color: $brandRed;
 		padding: 80px 0 0 10px;
@@ -408,6 +435,7 @@ width: 0; height: 0; position: absolute; top: 0; left: 0; opacity: 0; visibility
 	}
 }
 .about {
+	background-color: $bgColor;
 	&__container{
 		display: flex;
 		flex-direction: column;
@@ -415,6 +443,7 @@ width: 0; height: 0; position: absolute; top: 0; left: 0; opacity: 0; visibility
 	}
 	&__content {
 		display: flex;
+		min-width: 0;//for slick-sliders correct working 
 		flex-direction: column;
 		@media (min-width: 576px){
 			width: 80%;
@@ -437,7 +466,8 @@ width: 0; height: 0; position: absolute; top: 0; left: 0; opacity: 0; visibility
 		padding: 30px 5px 0 5px;
 		@media (min-width: 768px){
 			flex-direction: row;
-			justify-content: space-between;	
+			justify-content: space-between;
+			margin-bottom: 60px;	
 		}
 	}
 	&__column {
@@ -460,17 +490,272 @@ width: 0; height: 0; position: absolute; top: 0; left: 0; opacity: 0; visibility
 			line-height: 1.8;
 		}
 	}
+
+	&__slider {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+	}
+	&__slide {
+		width: 22%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	&__img {
+		max-width: 100%;		
+		position: relative;		
+	}
+	&__mask{
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		background-color: $textColor;
+		opacity: 0;
+		&.visible{			
+			opacity: 0.5;
+		}
+	}
+	&__list {
+		display: none;
+		&.visible{
+			display: flex;
+			position: absolute;
+			justify-content: center;
+			width: 100%;
+			bottom: 10%;		
+		}
+	}
+	&__item {
+		display: flex;
+		width: 30px;
+		height: 30px;
+		justify-content: center;
+		align-items: center;
+		&:hover{
+			background-color: $brandRed;
+		}
+	}
+	&__caption {
+		margin: 30px 0;
+		text-align: center;
+		&--name {
+			display: block;
+			margin-bottom: 20px;
+			font-size: 14px;
+			text-transform: uppercase;
+		}
+		&--position {
+			font-size: 13px;
+			text-transform: capitalize;
+		}
+	}
+
+}
+//.about__slider {}
+//.about__slide {}
+//.about__img {}
+.about__list {}
+.about__item {}
+.about__link {}
+.about__caption {}
+.about__caption--name {}
+.about__caption--position {}
+
+
+
+.sliderAbout {
+	min-width: 0;//for slick-sliders correct working
+	position: relative;
+	& .slick-arrow{
+		position: absolute;
+		top: 50%;
+		z-index: 10;
+		//font-size: 0;
+		
+		&:hover,
+		&:active{
+			background-color: $brandRed;
+		}
+		&.slick-prev{
+			left: 0;
+			background: url('../img/about/icons/angle-left.png') 0 0 no-repeat;
+		}
+		&.slick-next{
+			right: 0;
+			background: url('../img/about/icons/angle-right.png') 0 0 no-repeat;
+		}
+	}
+
+	&__slide {
+		display: flex;
+		flex-direction: column;
+	} 
 }
 
 
 
-.about__subtitle {}
-.subtitle {}
-.about__content {}
-.about__inform {}
-.about__column {}
-.about__text {}
 .about__slider {}
+.sliderAbout {}
+.sliderAbout__slide {}
+.sliderAbout__img {}
+.sliderAbout__list {}
+.sliderAbout__item {}
+.sliderAbout__link {}
+.sliderAbout__caption {}
+.sliderAbout__text {}
+.sliderAbout__subtext {}
+
+
+
+
+
+
+.works{
+	/*width: 100%;
+	height: 200px;
+	border: 1px solid #000;*/
+}
+
+.clients {
+	background-color: $bgColor;
+	&__container {		
+		min-width: 0;//for slick-slider
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		@media (min-width: 992px){
+			width: 60%;
+		}
+	}
+	&__head{
+		width: 100%;
+		margin-bottom: 60px;				
+	}
+	&__list {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		@media (min-width: 768px){			
+			flex-direction: row;		
+			justify-content: space-between;		
+		}		
+	}
+	&__item {
+		display: inline-block;
+		margin-bottom: 20px;
+		@media (min-width: 768px){
+			margin: 0 20px;
+		}
+		
+	}
+	&__logo{
+		display: flex;
+		height: 100%;		
+		align-items: center;
+	}
+	&__img{
+		max-width: 100%;
+	}
+	&__slider {
+		width: 92%;
+		margin: 0 auto;
+		@media (min-width: 768px) {
+			width: 80%;			
+		}
+	}
+	&__slide {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		text-align: center;
+		font-family: 'Roboto Slab', serif;		
+		color: $textColor;		
+	}
+	&__text {
+		display: inline-block;		
+		font-style: italic;		
+		font-size: 16px;
+		padding-bottom: 2em;
+		@media (min-width: 992px){
+			font-size: 18px;
+		}
+	}
+	&__caption {
+		display: inline-block;				
+		font-size: 16px;
+		padding-bottom: 2em;
+		@media (min-width: 992px){
+			font-size: 18px;
+		}
+	}
+	
+}
+//Styles for slick-slider (sliderClients)
+.sliderClients {
+	//min-width: 0;
+	position: relative;
+	& .slick-dots{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		& li{
+			list-style: none;
+			margin: 0 6px;
+			&.slick-active button{
+				background-color: $brandRed;
+			}
+		}
+		& button{
+				font-size: 0;
+				width: 14px;
+				height: 14px;
+				background-color: #dddddd;
+				border-radius: 50%;
+			}
+	}
+
+}
+ /* Слайдер */ 
+ .slick-slider{} 
+ /* Слайдер запущен */ 
+ .slick-slider.slick-initialized{} 
+ /* Слайдер с точками */ 
+ .slick-slider.slick-dotted{}	
+/* Ограничивающая оболочка */ 
+.slick-list {} 
+/* Лента слайдов */ 
+.slick-track{}
+/* Слайд */ 
+.slick-slide{} 
+/* Слайд активный (показывается) */ 
+.slick-slide.slick-active{} 
+/* Слайд основной */ 
+.slick-slide.slick-current{} 
+/* Слайд по центру */ 
+.slick-slide.slick-center{} 
+/* Клонированный слайд */ 
+.slick-slide.slick-cloned{}
+/* Стрелка */ 
+.slick-arrow{} 
+/* Стрелка влево */ 
+.slick-arrow.slick-prev{} 
+/* Стрелка вправо */ 
+.slick-arrow.slick-next{} 
+/* Стрелка не активная */ 
+.slick-arrow.slick-disabled{}
+/* Точки (булиты) */ 
+.slick-dots{} 
+.slick-dots li{} 
+/* Активная точка */ 
+.slick-dots li.slick-active{} 
+/* Элемент точки */ 
+.slick-dots li button{} 
+
+
+
 	
 	
 	
