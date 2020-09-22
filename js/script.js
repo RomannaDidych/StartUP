@@ -33,6 +33,19 @@ function hideBurgerNavigation(el){
 };
 hideBurgerNavigation();
 
+let readMoreBtns = document.querySelectorAll('.blog__btn');
+function showAllText(el){
+	readMoreBtns.forEach(el => {
+		el.addEventListener('click', changeTextHeight)
+	});
+	function changeTextHeight(){	
+		const text = this.previousElementSibling;
+		text.classList.toggle('visible');	
+		text.classList.contains('visible') ? this.innerHTML = 'Show less' :  this.innerHTML = 'Read more';	
+	};
+};
+showAllText();
+
 //get styles for focused slide (for sliderAbout)
 let slides = document.querySelectorAll('.about__slide');
 console.log(slides);
@@ -54,11 +67,16 @@ changeSlideStyle();
 
 
 //sliders management
-/*$(document).ready(function(){
+$(document).ready(function(){
 	$('.sliderAbout').slick({
-		//dots: true
+		arrows: true,
+		infinite: true,
+		slidesToShow: 4,
+		swipe: true,
+		centerMode: false,
+		variableWidth: false
 	});
-});*/
+});
 
 $(document).ready(function(){
 	$('.sliderClients').slick({
