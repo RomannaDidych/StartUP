@@ -47,23 +47,47 @@ function showAllText(el){
 showAllText();
 
 //get styles for focused slide (for sliderAbout)
-let slides = document.querySelectorAll('.about__slide');
+/*function getArrey(selector){
+	return document.querySelectorAll(selector);
+}
+let slides = getArrey('.works__item');//document.querySelectorAll('.about__slide');
 console.log(slides);
 function changeSlideStyle(el){
 	slides.forEach(el => {
 		el.addEventListener('click', toggleVisible)
 	});
 	function toggleVisible(){
-		console.log(this);
-		let mask = this.firstElementChild.firstElementChild.nextElementSibling;
+		//console.log(this);
+		//let mask = this.firstElementChild.firstElementChild.nextElementSibling;
+		let mask = this.firstElementChild.nextElementSibling;
 		let list = mask.nextElementSibling;
 		mask.classList.toggle('visible');
 		list.classList.toggle('visible'); 
 	};
 };
-changeSlideStyle();
+changeSlideStyle();*/
 
-
+function changeSlideStyle(arr){	
+	arr.forEach(el => {
+		el.addEventListener('mouseenter', addVisible);
+		el.addEventListener('mouseleave', removeVisible);
+	});
+	function addVisible(){		
+		//let mask = this.firstElementChild.firstElementChild.nextElementSibling;
+		let mask = this.firstElementChild.nextElementSibling;
+		let inform = mask.nextElementSibling;
+		mask.classList.add('visible');
+		inform.classList.add('visible'); 
+	};
+	function removeVisible(){		
+		let mask = this.firstElementChild.nextElementSibling;
+		let inform = mask.nextElementSibling;
+		mask.classList.remove('visible');
+		inform.classList.remove('visible'); 
+	};
+};
+let works = document.querySelectorAll('.works__item');
+changeSlideStyle(works);
 
 
 //sliders management
@@ -84,5 +108,19 @@ $(document).ready(function(){
 		dots: true
 	});
 });
+
+//works gallery filter
+$('.filtr__item').click(function(event){
+	let filterName = $(this).data('filter');
+	if (filterName === "all"){
+		$('.works__item').show();
+	} else{
+		$('.works__item').hide();
+		$('.works__item.'+filterName).show();
+	};
+	$('.filtr__item').removeClass('active');
+	$(this).addClass('active');
+});
+
 
 
