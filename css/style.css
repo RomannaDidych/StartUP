@@ -659,6 +659,84 @@ h1, h2, h3, h4, h5, h6 {
     .filtr__item.active {
       color: #C0301C; }
 
+.parallax {
+  width: 100%;
+  background: url("../img/parallax/bg_parallax.png") center/cover no-repeat;
+  position: relative; }
+  .parallax__mask {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #C0301C;
+    opacity: 1;
+    transition: all 3s ease 0s; }
+    .parallax__mask._active {
+      opacity: 0.5; }
+  .parallax__container {
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+  .parallax__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+    margin: 100px 0; }
+  .parallax__text {
+    margin-bottom: 30px; }
+    @media (min-width: 576px) {
+      .parallax__text {
+        margin-bottom: 40px; } }
+    @media (min-width: 768px) {
+      .parallax__text {
+        margin-bottom: 70px; } }
+  .parallax__p {
+    font-size: 22px;
+    line-height: 1.4;
+    color: #fff;
+    text-align: center; }
+    @media (min-width: 576px) {
+      .parallax__p {
+        font-size: 24px;
+        line-height: 1.5; } }
+    @media (min-width: 768px) {
+      .parallax__p {
+        font-size: 28px;
+        line-height: 1.6; } }
+    @media (min-width: 992px) {
+      .parallax__p {
+        font-size: 30px;
+        line-height: 1.8; } }
+    .parallax__p span {
+      text-transform: uppercase; }
+    .parallax__p--1 {
+      transform: translate(0px, 120%);
+      opacity: 0;
+      transition: all 0.8s ease 0s; }
+      .parallax__p--1._active {
+        transform: translate(0px, 0px);
+        opacity: 1; }
+    .parallax__p--2 {
+      transform: translate(0px, 120%);
+      opacity: 0;
+      transition: all 1.6s ease 0.8s; }
+      .parallax__p--2._active {
+        transform: translate(0px, 0px);
+        opacity: 1; }
+  .parallax__btn {
+    display: inline-block;
+    padding: .6em 2em;
+    border: 2px solid #fff;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 700;
+    opacity: 0;
+    transition: all 2s ease 2s; }
+    .parallax__btn._active {
+      opacity: 1; }
+
 .blog {
   width: 100%; }
   .blog__container {

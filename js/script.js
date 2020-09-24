@@ -67,6 +67,8 @@ function changeSlideStyle(el){
 };
 changeSlideStyle();*/
 
+
+//get styles for focused slide
 function changeSlideStyle(arr){	
 	arr.forEach(el => {
 		el.addEventListener('mouseenter', addVisible);
@@ -122,5 +124,39 @@ $('.filtr__item').click(function(event){
 	$(this).addClass('active');
 });
 
+//animation on scroll
+let animItems = document.querySelectorAll('.anim-items');
+if(animItems.length > 0){
+	window.addEventListener('scroll',animOnScroll);
+	function animOnScroll(){
+		for(let index=0; index<animItems.length; index++){
+			const animItem = animItems[index];
+			const animItemHeight = animItem.offsetHeight;//animated objects' height
+			const animItemOffset = offset(animItem).top;
+			const animStart = 4;//starts coefficient
 
+			let animItemPoint = window.innerHeight - animItemHeight / animStart; // animations start point (window.innerHeight - height of browsers' window)
 
+			if(animItemHeight > window.innerHeight){
+				animItemPoint = window.innerHeight - window.innerHeight / animStart;
+			}
+
+			if((pageYOffset > (animItemOffset-animItemPoint)) && (pageYOffset < (animItemOffset + animItemHeight))){
+				animItem.classList.add('_active');
+			} else {
+				animItem.classList.remove('_active');
+			}		
+		}
+	};
+	function offset(el){
+		const rect = el.getBoundingClientRect(),
+			scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+			scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+		return {top: rect.top + scrollTop, left: rect.left + scrollLeft}
+	}
+
+	setTimeout(() => {
+		animOnScroll();
+	}, 300);
+	
+};
